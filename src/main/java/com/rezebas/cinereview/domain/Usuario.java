@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class User implements Serializable {
 
     @NotNull
     @Size(min = 2, max = 100)
-    private String name;
+    private String nome;
 
     @NotNull(message = "O campo Email deve ser preenchido!")
     @Email
@@ -36,18 +36,18 @@ public class User implements Serializable {
 
     @NotNull(message = "O campo Senha deve ser preenchido!")
     @Size(min = 8)
-    private String password;
+    private String senha;
 
     @JsonIgnore
-    private int points;
+    private int pontos;
 
     @OneToMany(mappedBy = "userClient")
-    private List<Score> scores = new ArrayList<>();
+    private List<Pontos> scores = new ArrayList<>();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Profile profile;
+    private Perfil perfil;
 
     @OneToMany(mappedBy = "userClient")
-    private List<Reactions> reactions = new ArrayList<>();
+    private List<Reacoes> reacoes = new ArrayList<>();
 
 }

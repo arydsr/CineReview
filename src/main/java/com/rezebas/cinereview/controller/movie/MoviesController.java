@@ -1,16 +1,16 @@
 package com.rezebas.cinereview.controller.movie;
 
 import com.rezebas.cinereview.clients.omdb.dto.OmdbMovieResponse;
-import com.rezebas.cinereview.controller.movie.request.AnswerReviewRequest;
-import com.rezebas.cinereview.controller.movie.request.ScoreResquest;
-import com.rezebas.cinereview.controller.movie.response.AnswerReviewResponse;
+import com.rezebas.cinereview.controller.movie.request.ReAvaliacaoRequest;
+import com.rezebas.cinereview.controller.movie.request.PontosResquest;
+import com.rezebas.cinereview.controller.movie.response.ReAvaliacaoResponse;
 import com.rezebas.cinereview.controller.movie.response.RepeatedResponse;
-import com.rezebas.cinereview.controller.movie.response.ReviewResponse;
-import com.rezebas.cinereview.controller.movie.request.ReviewRequest;
-import com.rezebas.cinereview.controller.movie.response.ScoreResponse;
-import com.rezebas.cinereview.repositories.MovieRepository;
-import com.rezebas.cinereview.service.MovieService;
-import com.rezebas.cinereview.controller.movie.response.ReactionResponse;
+import com.rezebas.cinereview.controller.movie.response.AvaliacaoResponse;
+import com.rezebas.cinereview.controller.movie.request.AvaliacaoRequest;
+import com.rezebas.cinereview.controller.movie.response.PontosResponse;
+import com.rezebas.cinereview.repositories.FilmeRepository;
+import com.rezebas.cinereview.service.FilmeService;
+import com.rezebas.cinereview.controller.movie.response.ReacaoResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +26,10 @@ import java.util.Objects;
 public class MoviesController {
 
     @Autowired
-    MovieService movieService;
+    FilmeService movieService;
 
     @Autowired
-    MovieRepository movieRepository;
+    FilmeRepository movieRepository;
 
 
     @GetMapping("/titulo")
@@ -51,22 +51,22 @@ public class MoviesController {
     }
 
     @PostMapping("/avaliacao")
-    public ResponseEntity<ScoreResponse> postScoreMovie(@Valid @RequestBody ScoreResquest scoreResquest){
+    public ResponseEntity<PontosResponse> postScoreMovie(@Valid @RequestBody PontosResquest scoreResquest){
 
-        ScoreResponse scoreResponse = movieService.postScoreMovie(scoreResquest);
+        PontosResponse scoreResponse = movieService.postScoreMovie(scoreResquest);
         return ResponseEntity.status(201).body(scoreResponse);
     }
 
     @PostMapping("/comentario")
-    public ResponseEntity<ReviewResponse> postReviewMovie(@Valid @RequestBody ReviewRequest reviewResquest){
-            ReviewResponse reviewResponse = movieService.postReviewMovie(reviewResquest);
+    public ResponseEntity<AvaliacaoResponse> postReviewMovie(@Valid @RequestBody AvaliacaoRequest reviewResquest){
+            AvaliacaoResponse reviewResponse = movieService.postReviewMovie(reviewResquest);
             return ResponseEntity.status(201).body(reviewResponse);
     }
 
     @PostMapping("/comentario/resposta/{id}")
-    public ResponseEntity<AnswerReviewResponse> postAnswerReviewMovie(@PathVariable int id,
-                                                                      @Valid @RequestBody AnswerReviewRequest answerReviewRequest){
-        AnswerReviewResponse answerReviewResponse = movieService.postAnswerReviewMovie(id, answerReviewRequest);
+    public ResponseEntity<ReAvaliacaoResponse> postAnswerReviewMovie(@PathVariable int id,
+                                                                     @Valid @RequestBody ReAvaliacaoRequest answerReviewRequest){
+        ReAvaliacaoResponse answerReviewResponse = movieService.postAnswerReviewMovie(id, answerReviewRequest);
         return ResponseEntity.status(201).body(answerReviewResponse);
     }
 
@@ -79,16 +79,16 @@ public class MoviesController {
     }
 
     @PatchMapping("/comentario/like/{id}")
-    public ResponseEntity<ReactionResponse> putLikeComment( @PathVariable int id,
-                                                            @RequestParam(name = "like", required = true) boolean like) {
-        ReactionResponse likeResponse = movieService.likeReview(id, like);
+    public ResponseEntity<ReacaoResponse> putLikeComment(@PathVariable int id,
+                                                         @RequestParam(name = "like", required = true) boolean like) {
+        ReacaoResponse likeResponse = movieService.likeReview(id, like);
         return ResponseEntity.status(201).body(likeResponse);
     }
 
     @PatchMapping("/comentario/dislike/{id}")
-    public ResponseEntity<ReactionResponse> putDislikeComment(@PathVariable int id,
-                                                              @RequestParam(name = "dislike", required = true) boolean dislike){
-        ReactionResponse dislikeResponse = movieService.dislikeReview(id, dislike);
+    public ResponseEntity<ReacaoResponse> putDislikeComment(@PathVariable int id,
+                                                            @RequestParam(name = "dislike", required = true) boolean dislike){
+        ReacaoResponse dislikeResponse = movieService.dislikeReview(id, dislike);
         return ResponseEntity.status(201).body(dislikeResponse);
     }
 }

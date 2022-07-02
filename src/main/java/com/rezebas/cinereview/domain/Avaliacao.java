@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Review implements Serializable {
+public class Avaliacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String text;
+    private String texto;
 
     private String username;
 
@@ -34,12 +34,12 @@ public class Review implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "movie_client_id")
-    private Film movieClient;
+    private Filme movieClient;
 
     @OneToMany(mappedBy = "review")
-    private List<Reactions> reactions = new ArrayList<>();
+    private List<Reacoes> reacoes = new ArrayList<>();
 
-    private List<Reply> answer = new ArrayList<>();
+    private List<ReAvaliacao> avaliacaos = new ArrayList<>();
 
 
 }

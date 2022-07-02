@@ -5,19 +5,29 @@ import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
+
 @Getter
 @Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnswerReviewRequest {
+public class AvaliacaoRequest {
+
+    @NotNull(message = "O campo ID deve ser preenchido!")
+    private String filmeId;
+
+    @NotNull(message = "O campo Title deve ser preenchido!")
+    private String titulo;
+
+    @NotNull(message = "O campo Review deve ser preenchido!")
+    @JsonProperty(namespace = "review")
+    private String avaliacaoTexto;
 
     @NotNull(message = "O campo User Email deve ser preenchido!")
     @JsonProperty(namespace = "user_email")
     private String email;
 
-    @NotNull(message = "O campo Answer deve ser preenchido!")
-    @JsonProperty(namespace = "answer")
-    private String answerText;
-}
 
+
+
+}

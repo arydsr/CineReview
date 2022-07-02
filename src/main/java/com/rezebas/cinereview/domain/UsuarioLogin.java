@@ -1,4 +1,4 @@
-package com.rezebas.cinereview.dto;
+package com.rezebas.cinereview.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLogin {
+public class UsuarioLogin {
 
     private String email;
 
-    private String password;
+    private String senha;
 
     private String token;
 }

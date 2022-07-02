@@ -1,6 +1,6 @@
 package com.rezebas.cinereview.domain;
 
-import com.rezebas.cinereview.enums.ProfileEnum;
+import com.rezebas.cinereview.enums.PerfilEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Setter
 @Data
 @Entity
-public class Profile implements Serializable {
+public class Perfil implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,11 +24,11 @@ public class Profile implements Serializable {
 
     @OneToOne
     @MapsId
-    private User user;
+    private Usuario usuario;
 
     @Id
     @Enumerated(EnumType.STRING)
-    private ProfileEnum profileName;
+    private PerfilEnum profileName;
 
     @Override
     public String toString(){

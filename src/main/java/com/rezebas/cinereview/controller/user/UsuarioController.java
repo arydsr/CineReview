@@ -1,9 +1,9 @@
 package com.rezebas.cinereview.controller.user;
 
-import com.rezebas.cinereview.domain.User;
-import com.rezebas.cinereview.dto.UserLogin;
-import com.rezebas.cinereview.repositories.UserRepository;
-import com.rezebas.cinereview.service.UserService;
+import com.rezebas.cinereview.domain.Usuario;
+import com.rezebas.cinereview.domain.UsuarioLogin;
+import com.rezebas.cinereview.repositories.UsuarioRepository;
+import com.rezebas.cinereview.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,23 +15,23 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UserController {
+public class UsuarioController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
     @Autowired
-    private UserService userService;
+    private UsuarioService userService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<Usuario>> getAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Optional<User>> postUsuario(@RequestBody User user) {
-        Optional<User> novoUsuario = userService.registerUser(user);
+    public ResponseEntity<Optional<Usuario>> postUsuario(@RequestBody Usuario user) {
+        Optional<Usuario> novoUsuario = userService.registerUser(user);
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
         } catch (Exception e) {
@@ -40,9 +40,9 @@ public class UserController {
     }
 
     @PostMapping("/logar")
-    public ResponseEntity<UserLogin> autenticationUsuario(@RequestBody UserLogin userLogin) {
+    public ResponseEntity<UsuarioLogin> autenticationUsuario(@RequestBody UsuarioLogin userLogin) {
         try {
-            Optional<UserLogin> user = userService.login(userLogin);
+            Optional<UsuarioLogin> user = userService.login(userLogin);
             return ResponseEntity.status(HttpStatus.CREATED).body(user.get());
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -50,8 +50,8 @@ public class UserController {
     }
 
     @PutMapping("/alterar")
-    public ResponseEntity<User> putUser(@RequestBody User user) {
-        Optional<User> updateUser = userService.updateUser(user);
+    public ResponseEntity<Usuario> putUser(@RequestBody Usuario user) {
+        Optional<Usuario> updateUser = userService.updateUser(user);
         if (updateUser.isEmpty()) {
             return ResponseEntity.badRequest().build();
         } else {
@@ -61,7 +61,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public void deleteUsuario(@PathVariable long id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<Usuario> user = userRepository.findById(id);
         if (user.isPresent()) {
             userRepository.deleteById(id);
         } else {

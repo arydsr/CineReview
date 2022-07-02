@@ -12,6 +12,6 @@ import lombok.*;
 public class CreateModeratorResponse {
 
     private String username;
-    private String profile;
-    private String message;
+    private String perfil;
+    private String mensagem;
 }

@@ -7,7 +7,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReactionResponse {
-
-    private String message;
+public class AvaliacaoResponse {
+    private String titulo;
+    private String filmeId;
+    private String mensagem;
 }

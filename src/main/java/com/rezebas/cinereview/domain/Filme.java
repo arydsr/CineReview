@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Film {
+public class Filme {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,8 +33,8 @@ public class Film {
     private double avgScore;
 
     @OneToMany(mappedBy = "movieClient")
-    private List<Score> scores = new ArrayList<>();
+    private List<Pontos> scores = new ArrayList<>();
 
     @OneToMany(mappedBy = "movieClient")
-    private List<Review> reviews = new ArrayList<>();
+    private List<Avaliacao> reviews = new ArrayList<>();
 }

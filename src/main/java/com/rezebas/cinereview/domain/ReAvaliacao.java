@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reply {
+public class ReAvaliacao {
 
     @JsonProperty("username")
     private String username;

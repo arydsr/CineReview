@@ -5,14 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class Score implements Serializable {
+public class Reacoes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,13 +19,15 @@ public class Score implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String movie;
+    private int like;
+
+    private int dislike;
+
+    @ManyToOne
+    @JoinColumn(name = "review_client_id")
+    private Avaliacao avaliacao;
 
     @ManyToOne
     @JoinColumn(name = "user_client_id")
-    private User userClient;
-
-    @ManyToOne
-    @JoinColumn(name = "movie_client_id")
-    private Film movieClient;
+    private Usuario userClient;
 }

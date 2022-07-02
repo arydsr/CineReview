@@ -1,4 +1,4 @@
-package com.rezebas.cinereview.domain;
+package com.rezebas.cinereview.dto;
 
 import lombok.*;
 

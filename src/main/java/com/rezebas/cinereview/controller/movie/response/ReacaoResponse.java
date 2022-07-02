@@ -7,8 +7,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewResponse {
-    private String title;
-    private String movieId;
-    private String message;
+public class ReacaoResponse {
+
+    private String mensagem;
 }

@@ -1,15 +1,15 @@
 package com.rezebas.cinereview.enums;
 
-public enum ProfileEnum {
+public enum PerfilEnum {
 
-    ROLE_LEITOR("LEITOR"),
-    ROLE_BASICO("BASICO"),
-    ROLE_AVANCADO("AVANCADO"),
-    ROLE_MODERADOR("MODERADOR");
+    PERFIL_LEITOR("LEITOR"),
+    PERFIL_BASICO("BASICO"),
+    PERFIL_AVANCADO("AVANCADO"),
+    PERFIL_MODERADOR("MODERADOR");
 
     private final String value;
 
-    ProfileEnum(String value) {
+    PerfilEnum(String value) {
         this.value = value;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieResponse {
+public class FilmeResponse {
 
     private String title;
     private String year;
